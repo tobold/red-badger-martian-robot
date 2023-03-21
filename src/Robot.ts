@@ -11,7 +11,7 @@ export class MartianRobot implements Robot {
   private x: number;
   private y: number;
   private direction: Direction;
-  
+
   constructor() {
     this.x = 0;
     this.y = 0;
@@ -19,7 +19,7 @@ export class MartianRobot implements Robot {
   }
 
   public getPosition = () => {
-    return {x: this.x, y: this.y}
+    return { x: this.x, y: this.y }
   }
 
   public getDirection = () => {

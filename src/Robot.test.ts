@@ -8,7 +8,7 @@ describe('MartianRobot', () => {
 
   it('starts at 0, 0', () => {
     const robot = new MartianRobot()
-    expect(robot.getPosition()).toEqual({x: 0, y: 0})
+    expect(robot.getPosition()).toEqual({ x: 0, y: 0 })
   })
 
   it('starts facing North', () => {

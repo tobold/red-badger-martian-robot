@@ -42,7 +42,8 @@ position and orientation of the robot. If a robot falls off the edge of the grid
 should be printed after the position and orientation.
 
 ### Sample Input
-```5 3
+```
+5 3
 1 1 E
 RFRFRFRF
 3 2 N
@@ -53,3 +54,4 @@ Sample Output
 1 1 E
 3 3 N LOST
 2 3 S
+```
