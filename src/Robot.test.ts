@@ -21,4 +21,11 @@ describe('MartianRobot', () => {
     expect(robot.getPosition()).toEqual({ x: 1, y: 1 })
     expect(robot.getDirection()).toEqual(Direction.East)
   })
+  
+  it('can receive instructions and move accordingly', () => {
+    const robot = new MartianRobot(1, 1, Direction.East)
+    robot.instruct("RFRFRFRF")
+    expect(robot.getPosition()).toEqual({ x: 1, y: 1 })
+    expect(robot.getDirection()).toEqual(Direction.East)
+  })
 })
