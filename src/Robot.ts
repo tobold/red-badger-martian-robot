@@ -37,6 +37,7 @@ export class MartianRobot implements Robot {
   private processInstructions(instruction: string) {
     if (instruction === "F") { this.moveForward() }
     if (instruction === "R") { this.turnRight() }
+    if (instruction === "L") { this.turnLeft() }
   }
 
   private moveForward() {
@@ -52,5 +53,13 @@ export class MartianRobot implements Robot {
     if (currentDirection === Direction.East) {this.direction = Direction.South}
     if (currentDirection === Direction.South) {this.direction = Direction.West}
     if (currentDirection === Direction.West) {this.direction = Direction.North}
+  }
+
+  private turnLeft() {
+    const currentDirection = this.direction
+    if (currentDirection === Direction.North) {this.direction = Direction.West}
+    if (currentDirection === Direction.West) {this.direction = Direction.South}
+    if (currentDirection === Direction.South) {this.direction = Direction.East}
+    if (currentDirection === Direction.East) {this.direction = Direction.North}
   }
 }
