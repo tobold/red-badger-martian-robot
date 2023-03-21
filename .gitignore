@@ -2,7 +2,7 @@
 node_modules
 
 # ignore yarn.lock
-yarn.lockgit log
+yarn.lock
 
 .build
 
