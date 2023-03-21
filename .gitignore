@@ -1,0 +1,11 @@
+# Dependency directory
+node_modules
+
+# ignore yarn.lock
+yarn.lockgit log
+
+.build
+
+.replit
+
+replit.nix
