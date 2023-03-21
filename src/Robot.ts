@@ -12,10 +12,10 @@ export class MartianRobot implements Robot {
   private y: number;
   private direction: Direction;
 
-  constructor() {
-    this.x = 0;
-    this.y = 0;
-    this.direction = Direction.North
+  constructor(x = 0, y = 0, direction = Direction.North) {
+    this.x = x;
+    this.y = y;
+    this.direction = direction
   }
 
   public getPosition = () => {

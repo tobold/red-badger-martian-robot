@@ -15,4 +15,10 @@ describe('MartianRobot', () => {
     const robot = new MartianRobot()
     expect(robot.getDirection()).toEqual(Direction.North)
   })
+
+  it('can be given a starting location and direction', () => {
+    const robot = new MartianRobot(1, 1, Direction.East)
+    expect(robot.getPosition()).toEqual({ x: 1, y: 1 })
+    expect(robot.getDirection()).toEqual(Direction.East)
+  })
 })
