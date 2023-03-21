@@ -1,6 +1,6 @@
 import { Robot } from './Robot'
 
-describe('robot', () => {
+describe('Robot', () => {
   it('instatiates', () => {
     expect(() => new Robot()).not.toThrow()
   })
