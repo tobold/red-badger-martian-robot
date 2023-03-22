@@ -1,4 +1,4 @@
-import { MartianRobot } from './Robot'
+import { MartianRobot, Status } from './Robot'
 import { Direction } from './Direction'
 
 describe('MartianRobot', () => {
@@ -34,9 +34,24 @@ describe('MartianRobot', () => {
     expect(robot.getDirection()).toEqual(Direction.South)
   })
 
-  it('can turn move forward', () => {
+  it('can move forward', () => {
     const robot = new MartianRobot(1, 1, Direction.East)
     robot.moveForward()
     expect(robot.getPosition()).toEqual({ x: 2, y: 1 })
+  })
+
+  it('can be marked as lost', () => {
+    const robot = new MartianRobot(1, 1, Direction.East)
+    robot.markLost()
+    expect(robot.getStatus()).toEqual(Status.Lost)
+  })
+
+  it('cannot move or turn if lost', () => {
+    const robot = new MartianRobot(1, 1, Direction.East)
+    robot.markLost()
+    robot.moveForward()
+    robot.turnLeft()
+    expect(robot.getPosition()).toEqual({ x: 1, y: 1 })
+    expect(robot.getDirection()).toEqual(Direction.East)
   })
 })
