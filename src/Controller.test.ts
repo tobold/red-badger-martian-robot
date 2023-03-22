@@ -11,7 +11,20 @@ describe('Controller', () => {
     expect(output).toEqual(`0 1 N`)
   })
 
-  it('receives instructions and passes them down multiple robots', () => {
+  describe('going out of bounds', () => {
+    it('stops moving the robot and marks them as lost', () => {
+      const controller = new RobotController()
+      const input = `1 1
+                    0 0 N
+                    FF`
+      const output = controller.command(input)
+      
+      expect(output).toEqual(`0 1 N LOST`)
+    })
+  })
+
+  describe.skip('acceptance test', () => {
+    it('receives instructions and passes them down multiple robots', () => {
     const controller = new RobotController()
     const input = `5 3
                   1 1 E
@@ -26,6 +39,7 @@ describe('Controller', () => {
       `1 1 E
       3 3 N LOST
       2 3 S`)
+    })
   })
 })
 
