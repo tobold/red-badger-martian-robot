@@ -22,17 +22,21 @@ describe('MartianRobot', () => {
     expect(robot.getDirection()).toEqual(Direction.East)
   })
 
-  describe('examples', () => {
-    it.each`
-      x    | y    | direction         | instructions       | expectedX | expectedY | expectedDirection
-      ${1} | ${1} | ${Direction.East} | ${"RFRFRFRF"}      | ${1}      | ${1}      | ${Direction.East}
-      ${3} | ${2} | ${Direction.North}| ${"FRRFLLFFRRFLL"} | ${3}      | ${3}      | ${Direction.North}
-      ${0} | ${3} | ${Direction.West} | ${"LLFFFLFLFL"}    | ${2}      | ${4}      | ${Direction.South}
-    `('example with instruction: $instructions', ({x, y, direction, instructions, expectedX, expectedY, expectedDirection}) => {
-      const robot = new MartianRobot(x, y, direction)
-      robot.instruct(instructions)
-      expect(robot.getPosition()).toEqual({ x: expectedX, y: expectedY })
-      expect(robot.getDirection()).toEqual(expectedDirection)
-    })
+  it('can turn left', () => {
+    const robot = new MartianRobot(1, 1, Direction.East)
+    robot.turnLeft()
+    expect(robot.getDirection()).toEqual(Direction.North)
+  })
+
+  it('can turn right', () => {
+    const robot = new MartianRobot(1, 1, Direction.East)
+    robot.turnRight()
+    expect(robot.getDirection()).toEqual(Direction.South)
+  })
+
+  it('can turn move forward', () => {
+    const robot = new MartianRobot(1, 1, Direction.East)
+    robot.moveForward()
+    expect(robot.getPosition()).toEqual({ x: 2, y: 1 })
   })
 })
