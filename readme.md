@@ -57,3 +57,10 @@ LLFFFLFLFL
 3 3 N LOST
 2 3 S
 ```
+
+# Instructions
+to run tests:
+```
+npm install
+npm test
+```
