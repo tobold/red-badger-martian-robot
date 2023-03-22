@@ -2,12 +2,12 @@ import { Robot, MartianRobot, Position, Status } from "./Robot";
 import { Direction } from "./Direction";
 
 interface Controller {
-  instruct: (instructions: string) => void;
   command: (command: string) => void;
 }
 
-export class RobotController {
+export class RobotController implements Controller {
   private gridLimits: Position = { x: 0, y: 0 }
+  private lostScents: {x: number, y: number, direction: Direction }[] = []
 
   public command(command: string) {
     const commands = command.split(`\n`)
@@ -26,7 +26,7 @@ export class RobotController {
     }).join(`\n`)
   }
 
-  public instruct(instructionsString: string, robot: Robot) {
+  private instruct(instructionsString: string, robot: Robot) {
     const instructions = instructionsString.split('')
     instructions.forEach(instruction => {
       this.processInstructions(instruction, robot)
@@ -34,16 +34,26 @@ export class RobotController {
   }
 
   private processInstructions(instruction: string, robot: Robot) {
+    const position = robot.getPosition()
     if (instruction === "F") { 
       if (this.outOfBounds(robot)) { 
-        
-        robot.markLost()
+        const lostScent = this.lostScents.find(scent => scent.x === position.x && scent.y === position.y && scent.direction === robot.getDirection())
+        if (lostScent) { 
+          return 
+        }
+        this.markAsLost(robot)
       } else {
         robot.moveForward() 
       }
     }
     if (instruction === "R") { robot.turnRight() }
     if (instruction === "L") { robot.turnLeft() }
+  }
+
+  private markAsLost(robot: Robot) {
+    robot.markLost()
+    const position = robot.getPosition()
+    this.lostScents.push({x: position.x, y: position.y, direction: robot.getDirection()})
   }
   
   private outOfBounds(robot: Robot): boolean {
